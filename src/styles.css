@@ -1,0 +1,144 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Divya Enco — document-led engineering design system */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-electric: var(--electric);
+  --color-electric-foreground: var(--electric-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: "Space Grotesk", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(0.97 0.015 90);
+  --foreground: oklch(0.2 0.035 255);
+
+  --card: oklch(0.985 0.01 90);
+  --card-foreground: oklch(0.2 0.035 255);
+  --popover: oklch(0.985 0.01 90);
+  --popover-foreground: oklch(0.2 0.035 255);
+
+  --primary: oklch(0.59 0.16 47);
+  --primary-foreground: oklch(0.99 0.01 90);
+
+  --secondary: oklch(0.91 0.025 245);
+  --secondary-foreground: oklch(0.2 0.035 255);
+
+  --muted: oklch(0.93 0.02 90);
+  --muted-foreground: oklch(0.45 0.035 255);
+
+  --accent: oklch(0.52 0.12 235);
+  --accent-foreground: oklch(0.99 0.01 90);
+  --electric: oklch(0.52 0.12 235);
+  --electric-foreground: oklch(0.99 0.01 90);
+
+  --destructive: oklch(0.58 0.24 27);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.2 0.035 255 / 14%);
+  --input: oklch(0.2 0.035 255 / 18%);
+  --ring: oklch(0.59 0.16 47);
+
+  /* Glassmorphism surfaces */
+  --glass-bg: oklch(1 0 0 / 66%);
+  --glass-bg-strong: oklch(1 0 0 / 82%);
+  --glass-border: oklch(0.2 0.035 255 / 13%);
+
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, oklch(0.97 0.015 90), oklch(0.92 0.035 230));
+  --gradient-accent: linear-gradient(135deg, oklch(0.59 0.16 47), oklch(0.52 0.12 235));
+
+  /* Shadows */
+  --shadow-glass: 0 14px 36px -24px oklch(0.2 0.035 255 / 38%);
+  --shadow-glow: 0 12px 30px -14px oklch(0.59 0.16 47 / 45%);
+  --shadow-elevated: 0 24px 60px -30px oklch(0.2 0.035 255 / 42%);
+  --blueprint-grid: repeating-linear-gradient(0deg, oklch(0.52 0.12 235 / 6%) 0 1px, transparent 1px 24px), repeating-linear-gradient(90deg, oklch(0.52 0.12 235 / 6%) 0 1px, transparent 1px 24px);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    background-image: var(--blueprint-grid);
+    background-size: 24px 24px;
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Glass surface utilities */
+@utility glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+}
+
+@utility glass-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+}
+
+@utility text-gradient {
+  background: var(--gradient-accent);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility blueprint-grid {
+  background-image: var(--blueprint-grid);
+}
+
+/* Infinite marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee 28s linear infinite;
+}

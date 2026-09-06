@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "sdk_version": "0.24.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "divya-enco-mcp",
+      "version": "0.1.0",
+      "title": "Divya Enco"
+    },
+    "tools": [
+      {
+        "name": "list_services",
+        "title": "List Divya Enco services",
+        "description": "Returns the engineering, fabrication, and construction services Divya Enco delivers to industrial clients.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_clients",
+        "title": "List trusted clients",
+        "description": "Returns the list of well-known industrial clients Divya Enco has worked with.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_contact",
+        "title": "Get Divya Enco contact info",
+        "description": "Returns Divya Enco's public contact details: email, phone, and Trichy office address.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "submit_inquiry",
+        "title": "Prepare a project inquiry",
+        "description": "Formats a project inquiry to Divya Enco and returns a mailto: link that opens a pre-filled email to divyaenco@gmail.com.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Contact name of the person or company inquiring."
+            },
+            "email": {
+              "type": "string",
+              "description": "Reply-to email address."
+            },
+            "company": {
+              "description": "Company or organization name.",
+              "type": "string"
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Details of the project or inquiry."
+            }
+          },
+          "required": [
+            "name",
+            "email",
+            "message"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}

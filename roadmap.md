@@ -1,0 +1,5 @@
+- [ ] Reframe shared styling and navigation around document-grounded engineering content
+- [ ] Rebuild the home page with company story, motto, capabilities, infrastructure and technical diagrams
+- [ ] Replace portfolio copy with the documented product profile and manufacturing capabilities
+- [ ] Correct contact, footer, career and SEO content to match the supplied material
+- [ ] Verify the preview, build output and responsive layout
