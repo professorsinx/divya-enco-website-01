@@ -2,11 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowDownRight, ArrowRight, Check } from "lucide-react";
 
-const PRINCIPLES = [
-  "Optimum cost",
-  "Quality",
-  "In-time delivery",
-];
+const PRINCIPLES = ["Optimum cost", "Quality", "In-time delivery"];
 
 export function Hero() {
   return (
@@ -20,7 +16,7 @@ export function Hero() {
           className="max-w-3xl"
         >
           <span className="inline-flex items-center gap-2 border-l-2 border-primary pl-3 text-xs font-bold uppercase tracking-[0.24em] text-primary">
-            Engineering manufacturing / Mathur, Tamil Nadu
+            Engineering manufacturing
           </span>
 
           <h1 className="mt-6 max-w-4xl text-5xl font-black leading-[0.98] tracking-tight text-foreground sm:text-7xl lg:text-[6.5rem]">
@@ -52,7 +48,10 @@ export function Hero() {
 
           <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
             {PRINCIPLES.map((label) => (
-              <div key={label} className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+              <div
+                key={label}
+                className="flex items-center gap-2 text-sm font-medium text-muted-foreground"
+              >
                 <Check size={16} className="text-primary" />
                 {label}
               </div>
@@ -60,12 +59,24 @@ export function Hero() {
           </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }} className="hidden lg:block">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          className="hidden lg:block"
+        >
           <div className="ml-auto max-w-md border-l-2 border-primary/40 pl-8">
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">Built around the requirement</p>
-            <p className="mt-5 text-3xl font-black leading-tight text-foreground">Reliable people. Disciplined processes. Better engineering.</p>
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
+              Built around the requirement
+            </p>
+            <p className="mt-5 text-3xl font-black leading-tight text-foreground">
+              Reliable people. Disciplined processes. Better engineering.
+            </p>
             <div className="mt-8 grid grid-cols-2 gap-3 text-xs uppercase tracking-[0.16em] text-muted-foreground">
-              <span className="border-t border-border pt-3">Machining</span><span className="border-t border-border pt-3">Fabrication</span><span className="border-t border-border pt-3">Welding</span><span className="border-t border-border pt-3">Assembly</span>
+              <span className="border-t border-border pt-3">Machining</span>
+              <span className="border-t border-border pt-3">Fabrication</span>
+              <span className="border-t border-border pt-3">Welding</span>
+              <span className="border-t border-border pt-3">Assembly</span>
             </div>
           </div>
         </motion.div>

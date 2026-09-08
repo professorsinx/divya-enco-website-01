@@ -1,52 +1,97 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Camera } from "lucide-react";
-import bridgePhoto from "../assets/proj-bridge.jpg";
-import machineryPhoto from "../assets/proj-machinery.jpg";
-import pipelinePhoto from "../assets/proj-pipeline.jpg";
-import steelPhoto from "../assets/proj-steel.jpg";
+import product1 from "../../Images/product 1.jpg";
+import product2 from "../../Images/product 2.jpg";
+import product3 from "../../Images/product 3.jpg";
+import product4 from "../../Images/product 4.jpg";
+import product5 from "../../Images/product 5.jpg";
+import product6 from "../../Images/product 6.jpg";
+import product7 from "../../Images/product 7.jpg";
 
-const PHOTO_SLOTS = [
-  { image: machineryPhoto, title: "Machining / shop floor", meta: "Photo 01 / replace with VTL image" },
-  { image: steelPhoto, title: "Fabrication / welded assembly", meta: "Photo 02 / replace with fabrication image" },
-  { image: pipelinePhoto, title: "Industrial component work", meta: "Photo 03 / replace with component image" },
-  { image: bridgePhoto, title: "Completed engineering work", meta: "Photo 04 / replace with delivery image" },
+const PRODUCT_PHOTOS = [
+  { image: product1, title: "Product 1" },
+  { image: product2, title: "Product 2" },
+  { image: product3, title: "Product 3" },
+  { image: product4, title: "Product 4" },
+  { image: product5, title: "Product 5" },
+  { image: product6, title: "Product 6" },
+  { image: product7, title: "Product 7" },
 ];
 
-function PhotoSlot({ image, title, meta, index }: (typeof PHOTO_SLOTS)[number] & { index: number }) {
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4, delay: index * 0.06 }}
-      className="group relative overflow-hidden border border-border bg-card"
-    >
-      <div className="aspect-[4/3] overflow-hidden bg-secondary">
-        <img src={image} alt={title} className="h-full w-full object-cover grayscale-[35%] transition duration-500 group-hover:scale-105 group-hover:grayscale-0" />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/65 via-transparent to-transparent" />
-        <span className="absolute left-4 top-4 font-mono text-[10px] uppercase tracking-[0.18em] text-white/70">DE / GALLERY 0{index + 1}</span>
-        <span className="absolute bottom-4 left-4 text-sm font-bold text-white">{title}</span>
-      </div>
-      <div className="flex items-center justify-between gap-3 border-t border-border px-4 py-3">
-        <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">{meta}</span>
-        <Camera size={15} className="shrink-0 text-primary" />
-      </div>
-    </motion.article>
-  );
-}
-
 export function PhotoGallery() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activePhoto = PRODUCT_PHOTOS[activeIndex];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveIndex((currentIndex) => (currentIndex + 1) % PRODUCT_PHOTOS.length);
+    }, 6500);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
   return (
     <section aria-labelledby="photo-gallery-title">
       <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
         <div>
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-primary">Photo gallery / upload bay</span>
-          <h2 id="photo-gallery-title" className="mt-3 text-3xl font-black tracking-tight text-foreground md:text-5xl">Show the work. Leave room for the next job.</h2>
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-primary">
+            Photo gallery
+          </span>
+          <h2
+            id="photo-gallery-title"
+            className="mt-3 text-3xl font-black tracking-tight text-foreground md:text-5xl"
+          >
+            Product work, documented.
+          </h2>
         </div>
-        <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">A dedicated image surface for shop-floor, machine, component and completed-work photography.</p>
+        <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+          <Camera size={15} className="text-primary" />
+          <span>
+            Product {activeIndex + 1} / {PRODUCT_PHOTOS.length}
+          </span>
+        </div>
       </div>
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        {PHOTO_SLOTS.map((slot, index) => <PhotoSlot key={slot.title} {...slot} index={index} />)}
+
+      <div className="mt-8 overflow-hidden border border-border bg-card">
+        <div className="relative aspect-[16/9] overflow-hidden bg-secondary/60">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={activePhoto.image}
+              src={activePhoto.image}
+              alt={activePhoto.title}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.1, ease: "easeInOut" }}
+              className="absolute inset-0 h-full w-full object-contain p-4 md:p-8"
+            />
+          </AnimatePresence>
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent" />
+          <span className="absolute left-5 top-5 font-mono text-[10px] uppercase tracking-[0.18em] text-white/75">
+            DE / PRODUCT 0{activeIndex + 1}
+          </span>
+          <span className="absolute bottom-5 left-5 text-sm font-bold text-white">
+            {activePhoto.title}
+          </span>
+        </div>
+        <div className="flex items-center justify-between gap-4 border-t border-border px-4 py-4 md:px-6">
+          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+            Engineering product profile
+          </p>
+          <div className="flex items-center gap-2" aria-label="Select product photo">
+            {PRODUCT_PHOTOS.map((photo, index) => (
+              <button
+                key={photo.title}
+                type="button"
+                onClick={() => setActiveIndex(index)}
+                aria-label={`Show ${photo.title}`}
+                aria-current={index === activeIndex ? "true" : undefined}
+                className={`h-1.5 transition-all ${index === activeIndex ? "w-8 bg-primary" : "w-1.5 bg-border hover:bg-primary/60"}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

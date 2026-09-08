@@ -6,6 +6,7 @@ import { LogoPlaceholder } from "./LogoPlaceholder";
 
 const NAV_LINKS = [
   { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
   { label: "Capabilities", to: "/projects" },
   { label: "Careers", to: "/careers" },
   { label: "Contact", to: "/contact" },
