@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { Linkedin, Twitter, Facebook, Instagram, MapPin, Mail, Phone } from "lucide-react";
 import { LogoPlaceholder } from "./LogoPlaceholder";
 
+const MAPS_URL = "https://share.google/cZrdSYVdYsBsmT9Ji";
+
 const QUICK_LINKS = [
   { label: "Home", to: "/" },
   { label: "Projects", to: "/projects" },
@@ -67,13 +69,13 @@ export function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <MapPin size={16} className="mt-0.5 shrink-0 text-primary" />
-                <span>
+                <a href={MAPS_URL} target="_blank" rel="noreferrer" className="block text-sm text-muted-foreground transition-colors hover:text-primary">
                   101/2, 102 Rasipuram Road,
                   <br />
                   Mathur, Pudukotta – 622 515,
                   <br />
                   Tamil Nadu, India
-                </span>
+                </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={16} className="shrink-0 text-primary" />

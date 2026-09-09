@@ -30,6 +30,7 @@ const DETAILS = [
     Icon: MapPin,
     title: "Visit Us",
     lines: ["101/2, 102 Rasipuram Road", "Mathur, Pudukotta – 622 515", "Tamil Nadu, India"],
+    isLocation: true,
   },
   { Icon: Mail, title: "Email Us", lines: ["divyaenco@gmail.com", "operations@divyaenco.com"] },
   { Icon: Phone, title: "Call Us", lines: ["+91 86818 80006"] },
@@ -73,10 +74,16 @@ function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-bold text-foreground">{d.title}</h3>
-                  {d.lines.map((l) => (
-                    <p key={l} className="text-sm text-muted-foreground">
-                      {l}
-                    </p>
+                  {d.lines.map((l, idx) => (
+                    d.isLocation ? (
+                      <a key={l} href={MAPS_URL} target="_blank" rel="noreferrer" className="block text-sm text-muted-foreground transition-colors hover:text-primary">
+                        {l}
+                      </a>
+                    ) : (
+                      <p key={l} className="text-sm text-muted-foreground">
+                        {l}
+                      </p>
+                    )
                   ))}
                 </div>
               </div>

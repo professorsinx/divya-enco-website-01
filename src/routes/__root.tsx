@@ -7,6 +7,8 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
@@ -128,6 +130,32 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+function FloatingQuoteCTA() {
+  return (
+    <motion.div
+      className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full border border-white/60 bg-white/20 px-2 py-2 backdrop-blur-2xl shadow-[var(--shadow-glass)] ring-1 ring-primary/20 md:bottom-6 md:right-6"
+      initial={{ opacity: 0, y: 12, scale: 0.98 }}
+      animate={{ opacity: 1, y: [0, -4, 0], scale: 1 }}
+      transition={{ opacity: { duration: 0.6 }, y: { duration: 2.4, repeat: Infinity, ease: "easeInOut" }, scale: { duration: 0.6 } }}
+    >
+      <Link
+        to="/contact"
+        className="inline-flex items-center gap-2 rounded-full bg-card/70 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
+      >
+        <span className="whitespace-nowrap">Request a Quote</span>
+      </Link>
+      <span className="h-4 w-px bg-border/80" />
+      <Link
+        to="/contact"
+        className="inline-flex items-center gap-2 rounded-full bg-card/70 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
+      >
+        <span className="whitespace-nowrap">Send Drawing for Estimate</span>
+        <ArrowRight size={14} />
+      </Link>
+    </motion.div>
+  );
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
@@ -139,6 +167,7 @@ function RootComponent() {
         <Outlet />
       </main>
       <Footer />
+      <FloatingQuoteCTA />
     </QueryClientProvider>
   );
 }

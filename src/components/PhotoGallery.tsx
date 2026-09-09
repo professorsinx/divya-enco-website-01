@@ -10,13 +10,13 @@ import product6 from "../../Images/product 6.jpg";
 import product7 from "../../Images/product 7.jpg";
 
 const PRODUCT_PHOTOS = [
-  { image: product1, title: "Product 1" },
-  { image: product2, title: "Product 2" },
-  { image: product3, title: "Product 3" },
-  { image: product4, title: "Product 4" },
-  { image: product5, title: "Product 5" },
-  { image: product6, title: "Product 6" },
-  { image: product7, title: "Product 7" },
+  { image: product1, title: "Diffuser" },
+  { image: product2, title: "Evener Beam in assembly for nuclear application" },
+  { image: product3, title: "Inlet guide vane" },
+  { image: product4, title: "Shop floor" },
+  { image: product5, title: "Mixing Box assembly 5" },
+  { image: product6, title: "Assembled Air Cylinders for QCNR mechanism in power plant 6" },
+  { image: product7, title: "Assembled Air Cylinders for QCNR mechanism in power plant" },
 ];
 
 export function PhotoGallery() {
@@ -42,7 +42,7 @@ export function PhotoGallery() {
             id="photo-gallery-title"
             className="mt-3 text-3xl font-black tracking-tight text-foreground md:text-5xl"
           >
-            Product work, documented.
+            Engineering brought to life.
           </h2>
         </div>
         <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
