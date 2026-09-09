@@ -1,13 +1,13 @@
-import { copyFileSync } from "node:fs";
+import { copyFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-function githubPages404Fallback() {
+function githubPagesStaticRouteFallbacks() {
   return {
-    name: "github-pages-404-fallback",
+    name: "github-pages-static-route-fallbacks",
     writeBundle() {
       const indexPath = join(process.cwd(), "dist/index.html");
       const fallbackPath = join(process.cwd(), "dist/404.html");
@@ -15,8 +15,21 @@ function githubPages404Fallback() {
       try {
         copyFileSync(indexPath, fallbackPath);
       } catch {
-        // The build always emits index.html first; if that is missing for any reason,
-        // the fallback emit should be a no-op rather than fail the docs build.
+        // Ignore if the generated index file is absent before the output step writes.
+      }
+
+      const routes = ["about", "careers", "contact", "projects"];
+
+      for (const route of routes) {
+        const folder = join(process.cwd(), "dist", route);
+        const target = join(folder, "index.html");
+
+        try {
+          mkdirSync(folder, { recursive: true });
+          copyFileSync(indexPath, target);
+        } catch {
+          // Route directory copy is best-effort so the primary static shell is still emitted.
+        }
       }
     },
   };
@@ -28,7 +41,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     tsconfigPaths(),
-    githubPages404Fallback(),
+    githubPagesStaticRouteFallbacks(),
   ],
   build: {
     outDir: "dist",
