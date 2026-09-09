@@ -1,4 +1,4 @@
-import { copyFileSync, mkdirSync } from "node:fs";
+import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
@@ -26,7 +26,10 @@ function githubPagesStaticRouteFallbacks() {
 
         try {
           mkdirSync(folder, { recursive: true });
-          copyFileSync(indexPath, target);
+
+          const raw = readFileSync(indexPath, "utf8");
+          const routeIndex = raw.replace(/src="\.\/assets\//g, 'src="../assets/');
+          writeFileSync(target, routeIndex);
         } catch {
           // Route directory copy is best-effort so the primary static shell is still emitted.
         }
