@@ -16,7 +16,7 @@ export function Hero() {
           className="flex min-h-[35rem] justify-center pt-0"
         >
           <div className="w-full max-w-[38rem]">
-            <span className="inline-flex items-center gap-2 border-l-2 border-primary pl-3 text-xs font-bold uppercase tracking-[0.24em] text-primary">
+            <span className="block h-4 border-l-2 border-primary pl-3 font-mono text-xs uppercase leading-4 tracking-[0.22em] text-primary">
               Engineering manufacturing
             </span>
 
@@ -36,7 +36,7 @@ export function Hero() {
         >
           <div className="flex min-h-[34rem] flex-col justify-center border-l-2 border-primary/40 pl-10 pt-0">
             <div className="mx-auto w-full max-w-xl text-left">
-              <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
+              <p className="h-4 font-mono text-xs uppercase leading-4 tracking-[0.22em] text-primary">
                 Built around the requirement
               </p>
               <p className="mt-5 text-center text-[2rem] font-black leading-tight text-foreground">
