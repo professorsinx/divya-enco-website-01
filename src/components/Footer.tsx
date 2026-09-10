@@ -72,7 +72,7 @@ export function Footer() {
                 <a href={MAPS_URL} target="_blank" rel="noreferrer" className="block text-sm text-muted-foreground transition-colors hover:text-primary">
                   101/2, 102 Rasipuram Road,
                   <br />
-                  Mathur, Pudukotta – 622 515,
+                  Mathur, Pudukottai – 622 515,
                   <br />
                   Tamil Nadu, India
                 </a>

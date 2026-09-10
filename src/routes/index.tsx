@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, Check, Factory, Gauge, Layers3, Wrench } from "lucide-react";
+import { ArrowRight, Check, Factory, Gauge, Layers3, X, Wrench } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Hero } from "../components/Hero";
 import { ClientMarquee } from "../components/ClientMarquee";
-import isoCertificate from "../../Images/ISO_cert.jpg";
+import isoCertificate from "../../Images/ISO_cert.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -55,6 +56,19 @@ const CAPABILITIES = [
 ];
 
 function Index() {
+  const [certificateOpen, setCertificateOpen] = useState(false);
+
+  useEffect(() => {
+    if (!certificateOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setCertificateOpen(false);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [certificateOpen]);
+
   return (
     <>
       <Hero />
@@ -173,12 +187,11 @@ function Index() {
               Talk to our team <ArrowRight size={17} />
             </Link>
           </div>
-          <a
-            href={isoCertificate}
-            target="_blank"
-            rel="noreferrer"
-            className="group mx-auto block w-full max-w-[220px] overflow-hidden border border-white/70 bg-white/60 p-2 shadow-[var(--shadow-glass)] transition-transform hover:-translate-y-1"
-            aria-label="Open the Divya Enco ISO 9001:2015 certificate"
+          <button
+            type="button"
+            onClick={() => setCertificateOpen(true)}
+            className="group mx-auto block w-full max-w-[220px] cursor-pointer overflow-hidden border border-white/70 bg-white/60 p-2 text-left shadow-[var(--shadow-glass)] transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            aria-label="View the Divya Enco ISO 9001:2015 certificate"
           >
             <img
               src={isoCertificate}
@@ -188,9 +201,43 @@ function Index() {
             <span className="block px-1 pb-1 pt-2 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground group-hover:text-primary">
               ISO 9001:2015 / valid to 2028
             </span>
-          </a>
+          </button>
         </div>
       </section>
+
+      {certificateOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="certificate-viewer-title"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/75 p-4 backdrop-blur-sm sm:p-8"
+          onClick={() => setCertificateOpen(false)}
+        >
+          <div
+            className="relative flex max-h-full max-w-4xl flex-col items-center gap-3 bg-background p-3 shadow-2xl sm:p-5"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex w-full items-center justify-between gap-4">
+              <h2 id="certificate-viewer-title" className="text-sm font-bold text-foreground">
+                ISO 9001:2015 Certificate
+              </h2>
+              <button
+                type="button"
+                onClick={() => setCertificateOpen(false)}
+                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-foreground hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                aria-label="Close certificate viewer"
+              >
+                <X size={18} />
+              </button>
+            </div>
+            <img
+              src={isoCertificate}
+              alt="Divya Enco ISO 9001:2015 certificate, valid through April 4, 2028"
+              className="max-h-[calc(100vh-8rem)] w-auto max-w-full object-contain"
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -29,7 +29,7 @@ const DETAILS = [
   {
     Icon: MapPin,
     title: "Visit Us",
-    lines: ["101/2, 102 Rasipuram Road", "Mathur, Pudukotta – 622 515", "Tamil Nadu, India"],
+    lines: ["101/2, 102 Rasipuram Road", "Mathur, Pudukottai – 622 515", "Tamil Nadu, India"],
     isLocation: true,
   },
   { Icon: Mail, title: "Email Us", lines: ["divyaenco@gmail.com", "operations@divyaenco.com"] },
