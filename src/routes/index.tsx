@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check, Factory, Gauge, Layers3, Wrench } from "lucide-react";
 import { Hero } from "../components/Hero";
 import { ClientMarquee } from "../components/ClientMarquee";
+import isoCertificate from "../../Images/ISO_cert.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -153,8 +154,8 @@ function Index() {
       </section>
 
       <section className="px-4 py-20">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 border border-primary/30 bg-primary/5 p-8 md:flex-row md:items-center md:p-12">
-          <div>
+        <div className="mx-auto grid max-w-7xl gap-8 border border-primary/30 bg-primary/5 p-8 md:grid-cols-[minmax(0,1fr)_220px] md:items-center md:p-12">
+          <div className="min-w-0">
             <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
               Quality system / ISO 9001 certified organisation
             </span>
@@ -165,13 +166,29 @@ function Index() {
               From customer requirements and engineering drawings through procurement,
               manufacturing, inspection, testing and final delivery.
             </p>
+            <Link
+              to="/contact"
+              className="mt-6 inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground hover:bg-primary/90"
+            >
+              Talk to our team <ArrowRight size={17} />
+            </Link>
           </div>
-          <Link
-            to="/contact"
-            className="inline-flex shrink-0 items-center gap-2 rounded-md bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground hover:bg-primary/90"
+          <a
+            href={isoCertificate}
+            target="_blank"
+            rel="noreferrer"
+            className="group mx-auto block w-full max-w-[220px] overflow-hidden border border-white/70 bg-white/60 p-2 shadow-[var(--shadow-glass)] transition-transform hover:-translate-y-1"
+            aria-label="Open the Divya Enco ISO 9001:2015 certificate"
           >
-            Talk to our team <ArrowRight size={17} />
-          </Link>
+            <img
+              src={isoCertificate}
+              alt="Divya Enco ISO 9001:2015 certificate"
+              className="aspect-[3/4] w-full object-cover object-top"
+            />
+            <span className="block px-1 pb-1 pt-2 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground group-hover:text-primary">
+              ISO 9001:2015 / valid to 2028
+            </span>
+          </a>
         </div>
       </section>
     </>

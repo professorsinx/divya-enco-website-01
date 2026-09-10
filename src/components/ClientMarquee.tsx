@@ -1,33 +1,51 @@
 import bhelLogo from "../assets/bhel.png";
 
 const CLIENTS = [
-  { name: "BHEL", location: "Trichy / Ranipet", logo: bhelLogo },
-  { name: "Loesche India", location: "", logo: "" },
-  { name: "GEECO Enercon Pvt Ltd", location: "", logo: "" },
-  { name: "ATS Engineering Industries, Salem", location: "", logo: "" },
-  { name: "Sreewari Engineers Pvt Ltd", location: "", logo: "" },
+  { name: "BHEL", location: "Trichy / Ranipet", logo: bhelLogo, url: "https://trichy.bhel.com/" },
+  { name: "Loesche India", location: "", logo: "", url: "https://www.loesche.com/" },
+  { name: "GEECO Enercon Pvt Ltd", location: "", logo: "", url: "https://www.geeco.in/" },
+  {
+    name: "ATS Engineering Industries, Salem",
+    location: "",
+    logo: "",
+    url: "https://atschem.in/",
+  },
+  {
+    name: "Sreewari Engineers Pvt Ltd",
+    location: "",
+    logo: "",
+    url: "https://sreewariengineers.com/",
+  },
 ];
 
-function ClientMark({ name, location, logo }: (typeof CLIENTS)[number]) {
+function ClientMark({ name, location, logo, url }: (typeof CLIENTS)[number]) {
   return (
-    <div className="glass mx-3 flex h-20 w-56 shrink-0 items-center gap-4 rounded-xl px-5">
+    <a
+      href={url}
+      target="_blank"
+      rel="noreferrer"
+      className="glass group mx-3 flex h-20 w-56 shrink-0 items-center gap-4 rounded-xl px-5 transition-colors duration-300 hover:border-primary hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+      aria-label={`Visit ${name} website`}
+    >
       <div className="flex h-12 items-center">
         {logo ? (
           <img
             src={logo}
             alt={`${name} logo`}
-            className="max-h-10 w-auto max-w-[150px] object-contain"
+            className="max-h-10 w-auto max-w-[150px] object-contain transition-[filter] duration-300 group-hover:brightness-0 group-hover:invert"
           />
         ) : (
-          <span className="font-black tracking-[0.06em] text-foreground/75">{name}</span>
+          <span className="font-black tracking-[0.06em] text-foreground/75 transition-colors duration-300 group-hover:text-primary-foreground">
+            {name}
+          </span>
         )}
       </div>
       {location && (
-        <p className="ml-auto max-w-[92px] font-mono text-xs uppercase tracking-[0.1em] text-muted-foreground">
+        <p className="ml-auto max-w-[92px] font-mono text-xs uppercase tracking-[0.1em] text-muted-foreground transition-colors duration-300 group-hover:text-primary-foreground/85">
           {location}
         </p>
       )}
-    </div>
+    </a>
   );
 }
 
