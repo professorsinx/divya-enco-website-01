@@ -55,6 +55,12 @@ const CAPABILITIES = [
   },
 ];
 
+const HOME_RUNNER_MESSAGES = [
+  "Current openings: A, B, C, Internships",
+  "Employee benefits: safe workplace, structured learning, welfare support and family-friendly culture",
+  "Career pathways welcome people from across India, including workers and families seeking a secure place to grow and settle",
+];
+
 function Index() {
   const [certificateOpen, setCertificateOpen] = useState(false);
 
@@ -72,6 +78,25 @@ function Index() {
   return (
     <>
       <Hero />
+
+      <section className="border-b border-border bg-card/45 px-4 py-3">
+        <div className="mx-auto max-w-7xl">
+          <div className="relative overflow-hidden">
+            <div className="flex w-max animate-marquee items-center gap-8">
+              {[...HOME_RUNNER_MESSAGES, ...HOME_RUNNER_MESSAGES].map((message, index) => (
+                <span
+                  key={`${message}-${index}`}
+                  className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground"
+                >
+                  <span className="mr-2 text-primary">//</span>
+                  {message}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <ClientMarquee />
 
       <section className="border-y border-border bg-card/50 px-4 py-20">

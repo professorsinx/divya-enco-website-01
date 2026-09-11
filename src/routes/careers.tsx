@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { Heart, Rocket, GraduationCap, Users, BadgeCheck, ShieldCheck, HeartPulse } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Heart, Rocket, GraduationCap, Users, BadgeCheck, ShieldCheck, HeartPulse, Home } from "lucide-react";
 import { CareerForm } from "../components/CareerForm";
 
 export const Route = createFileRoute("/careers")({
@@ -30,7 +31,92 @@ const PERKS = [
   { Icon: BadgeCheck, title: "PF", desc: "Provident Fund benefits for eligible employees." },
   { Icon: ShieldCheck, title: "ESI", desc: "Employee State Insurance coverage for eligible employees." },
   { Icon: HeartPulse, title: "Health Insurance", desc: "Additional support for your health and wellbeing." },
+  { Icon: Home, title: "Free Dormitory", desc: "A safe space with all basic amenities, provided free of charge." },
 ];
+
+const CAREER_SCHEMES = [
+  {
+    title: "Women in Heavy Engineering Training",
+    desc: "We provide specialised training for women who are interested in learning to operate heavy machinery and related shop-floor equipment. Women with experience in agricultural or unskilled labour, along with the interest and openness to learn, are encouraged to join us. Candidates from villages surrounding our factory are especially welcome. Over the next two years, our goal is to achieve at least 33% women’s participation across our factories.",
+  },
+  {
+    title: "Employee Referral Program",
+    desc: "We believe our people are our best recruiters. When an employee refers a candidate who goes on to complete three months of service, the referring employee is rewarded with an incentive of ₹5,000.",
+  },
+  {
+    title: "Back to Industry(For school/college dropouts)",
+    desc: "An interrupted education should never mean an interrupted future. We welcome individuals who stepped away from formal education for reasons beyond their control and are ready to build a career in engineering. A genuine interest in learning matters far more to us than a certificate — even first-time beginners will find a place on our team.",
+  },
+  {
+    title: "Career Returners Program",
+    desc: "We welcome professionals returning to the workforce after a break — whether due to relocation, marriage, childbirth, exam preparation, medical reasons, or any other life circumstance. Prior experience is valued but never required. What matters most to us is the drive to learn and the willingness to work as part of a team.",
+  },
+  {
+    title: "Home Away From Home",
+    desc: "Tamil Nadu's industries have welcomed a significant movement of talent from across India, and Divya Enco is proud to be part of that diverse community. Employees relocating with their families are supported with family quarters, while those arriving individually — or as a group of friends — are welcome to stay in our dormitory facilities.",
+  },
+  {
+    title: "Internship & Earn-While-You-Learn Program",
+    desc: "We offer paid internships to candidates from ITIs, engineering colleges and business schools, pairing real-world industry training with free dormitory accommodation. Current students are also welcome to join us part-time — on weekends or evenings — to gain hands-on technical experience and earn while they continue their studies.",
+  },
+];
+
+function CultureProgramMarquee() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((current) => (current + 1) % CAREER_SCHEMES.length);
+    }, 10000);
+    return () => clearInterval(id);
+  }, []);
+
+  const scheme = CAREER_SCHEMES[index];
+
+  return (
+    <div className="mx-auto max-w-3xl">
+      <div className="relative min-h-[220px] overflow-hidden sm:min-h-[180px]">
+        <AnimatePresence mode="wait">
+          <motion.article
+            key={scheme.title}
+            initial={{ opacity: 0, x: 32 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -32 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="glass rounded-2xl p-6 text-center md:p-8"
+          >
+            <div className="flex items-center justify-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-primary" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-primary">
+                Our Employee Support Programs
+              </span>
+            </div>
+            <h3 className="mt-4 text-xl font-black leading-tight text-foreground md:text-2xl">
+              {scheme.title}
+            </h3>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              {scheme.desc}
+            </p>
+          </motion.article>
+        </AnimatePresence>
+      </div>
+
+      <div className="mt-5 flex items-center justify-center gap-2">
+        {CAREER_SCHEMES.map((s, i) => (
+          <button
+            key={s.title}
+            type="button"
+            onClick={() => setIndex(i)}
+            aria-label={`Show ${s.title}`}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === index ? "w-6 bg-primary" : "w-1.5 bg-muted-foreground/30"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function CareersPage() {
   return (
@@ -76,6 +162,15 @@ function CareersPage() {
             ))}
           </div>
         </div>
+
+        <section className="mt-12">
+          <div className="mb-5 flex items-center justify-center">
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-primary">
+              Skill & culture programs
+            </span>
+          </div>
+          <CultureProgramMarquee />
+        </section>
 
         <div className="mt-14">
           <h2 className="mb-6 text-center text-2xl font-bold text-foreground">
