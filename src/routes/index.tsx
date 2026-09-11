@@ -77,9 +77,7 @@ function Index() {
 
   return (
     <>
-      <Hero />
-
-      <section className="border-b border-border bg-card/45 px-4 py-3">
+      <section className="border-b border-border bg-card/45 px-4 pb-3 pt-28 md:pt-32">
         <div className="mx-auto max-w-7xl">
           <div className="relative overflow-hidden">
             <div className="flex w-max animate-marquee items-center gap-8">
@@ -96,6 +94,8 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <Hero />
 
       <ClientMarquee />
 

@@ -6,7 +6,7 @@ const PRINCIPLES = ["Optimum cost", "Quality", "In-time delivery"];
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden px-4 pb-16 pt-32 md:pb-24 md:pt-40">
+    <section className="relative overflow-hidden px-4 pb-16 pt-8 md:pb-24 md:pt-10">
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[34rem] bg-gradient-to-b from-secondary/70 to-transparent" />
       <div className="mx-auto grid max-w-7xl items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
         <motion.div
