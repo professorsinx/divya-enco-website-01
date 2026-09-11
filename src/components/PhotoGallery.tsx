@@ -15,7 +15,7 @@ const PRODUCT_PHOTOS = [
   { image: product3, title: "Inlet guide vane" },
   { image: product4, title: "Shop floor" },
   { image: product5, title: "Mixing Box assembly 5" },
-  { image: product6, title: "Assembled Air Cylinders for QCNR mechanism in power plant 6" },
+  { image: product6, title: "Assembled Air Cylinders for QCNR mechanism in power plant" },
   { image: product7, title: "Assembled Air Cylinders for QCNR mechanism in power plant" },
 ];
 

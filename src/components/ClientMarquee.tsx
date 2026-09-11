@@ -32,7 +32,7 @@ function ClientMark({ name, location, logo, url }: (typeof CLIENTS)[number]) {
           <img
             src={logo}
             alt={`${name} logo`}
-            className="max-h-10 w-auto max-w-[150px] object-contain"
+            className="max-h-10 w-auto max-w-[150px] rounded-[4px] object-contain"
           />
         ) : (
           <span className="font-black tracking-[0.06em] text-foreground/75 transition-colors duration-300 group-hover:text-primary-foreground">
