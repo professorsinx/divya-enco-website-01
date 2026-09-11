@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Factory, Menu, X } from "lucide-react";
 import { LogoPlaceholder } from "./LogoPlaceholder";
 
 const NAV_LINKS = [
@@ -39,18 +39,27 @@ export function Navbar() {
         <LogoPlaceholder />
 
         <ul className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((link) => (
-            <li key={link.to}>
-              <Link
-                to={link.to}
-                className="rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                activeProps={{ className: "!text-foreground bg-white/10" }}
-                activeOptions={{ exact: link.to === "/" }}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isCapabilities = link.label === "Capabilities";
+            return (
+              <li key={link.to}>
+                <Link
+                  to={link.to}
+                  className={`group flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition-all duration-300 ${
+                    isCapabilities
+                      ? "border border-primary/50 bg-primary/8 text-primary shadow-[var(--shadow-glow)] hover:bg-primary/15 hover:px-5 hover:text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  activeProps={{ className: isCapabilities ? "!text-primary bg-primary/12 border border-primary/70" : "!text-foreground bg-white/10" }}
+                  activeOptions={{ exact: link.to === "/" }}
+                >
+                  {isCapabilities && <Factory size={14} className="transition-transform group-hover:scale-110" />}
+                  <span>{link.label}</span>
+                  {isCapabilities && <span className="ml-1 text-[11px] opacity-80 transition-transform group-hover:translate-x-1">↗</span>}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="hidden md:block">
