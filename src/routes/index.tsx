@@ -45,7 +45,7 @@ const CAPABILITIES = [
   {
     Icon: Factory,
     number: "03",
-    title: "Industrial components",
+    title: "Finished Products",
     desc: "Manufacturing pneumatic and hydraulic cylinders, inlet guide vanes and air preheater components.",
   },
   {
