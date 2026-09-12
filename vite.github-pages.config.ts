@@ -28,7 +28,9 @@ function githubPagesStaticRouteFallbacks() {
           mkdirSync(folder, { recursive: true });
 
           const raw = readFileSync(indexPath, "utf8");
-          const routeIndex = raw.replace(/src="\.\/assets\//g, 'src="../assets/');
+          const routeIndex = raw
+            .replace(/src="\.\/assets\//g, 'src="../assets/')
+            .replace(/href="\.\/([^\"]+)"/g, 'href="../$1"');
           writeFileSync(target, routeIndex);
         } catch {
           // Route directory copy is best-effort so the primary static shell is still emitted.

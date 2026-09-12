@@ -13,7 +13,7 @@ const CLIENTS = [
   {
     name: "Sreewari Engineers Pvt Ltd",
     location: "Chennai",
-    logo: "/sreewari.jpg",
+    logo: "/sreewari.webp",
     url: "https://sreewariengineers.com/",
   },
   {
@@ -31,7 +31,7 @@ const CLIENTS = [
     {
     name: "Sisco Energy Pvt. Ltd",
     location: "Pudukottai",
-    logo: "/sisco-logo.jpeg",
+    logo: "/sisco-logo.webp",
     url: "https://www.siscoenergy.com/",
   }, 
     {

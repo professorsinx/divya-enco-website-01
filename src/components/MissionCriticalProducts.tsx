@@ -17,7 +17,7 @@ const PRODUCTS = [
   { title: "Pneumatic and Hydraulic Cylinders", image: airCylinder },
   { title: "Inlet Guide Vanes", image: guideVane },
   { title: "Air Preheater Components", image: airPreheater },
-  { title: "Fabrication & Machining", image: machining },
+  { title: "Valve Body Machining", image: machining },
   { title: "Evener Beam for Nuclear Applications", image: evenerBeam },
   { title: "Measuring Pin for Nuclear Applications", image: measuringPin },
   { title: "Gate Assembly", image: gateAssembly },
