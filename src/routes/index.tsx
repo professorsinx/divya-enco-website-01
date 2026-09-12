@@ -4,6 +4,7 @@ import { ArrowRight, Check, Factory, Gauge, Layers3, X, Wrench } from "lucide-re
 import { useEffect, useState } from "react";
 import { Hero } from "../components/Hero";
 import { ClientMarquee } from "../components/ClientMarquee";
+import { MissionCriticalProducts } from "../components/MissionCriticalProducts";
 import isoCertificate from "../../Images/ISO_cert.webp";
 
 export const Route = createFileRoute("/")({
@@ -33,33 +34,29 @@ const CAPABILITIES = [
     Icon: Gauge,
     number: "01",
     title: "Precision machining",
-    desc: "Machining for demanding requirements with vertical turning, horizontal boring, lathes and measuring instruments.",
+    desc: "Machining for demanding requirements with vertical turning, horizontal boring, lathes and milling machines.",
   },
   {
     Icon: Layers3,
     number: "02",
     title: "Fabrication & welding",
-    desc: "Contract fabrication, CO₂ welding, arc welding, gas cutting and grinding brought together under one roof.",
+    desc: "Fabrication, Shielded metal arc welding (SMAW) welding, Tungsten inert gas (TIG) welding & CO₂ welding, profile cutting and grinding brought together under one roof.",
   },
   {
     Icon: Factory,
     number: "03",
     title: "Industrial components",
-    desc: "Manufacturing air and oil cylinder inlets, inlet guide vanes and air preheater components.",
+    desc: "Manufacturing pneumatic and hydraulic cylinders, inlet guide vanes and air preheater components.",
   },
   {
     Icon: Wrench,
     number: "04",
-    title: "Assembly & delivery",
+    title: "Timely delivery",
     desc: "Reliable products and systems delivered through controlled processes, inspection, testing and traceability.",
   },
 ];
 
-const HOME_RUNNER_MESSAGES = [
-  "Current openings: A, B, C, Internships",
-  "Employee benefits: safe workplace, structured learning, welfare support and family-friendly culture",
-  "Career pathways welcome people from across India, including workers and families seeking a secure place to grow and settle",
-];
+const HOME_RUNNER_MESSAGES = ["POSITIONS OPEN: FITTER, WELDER, TURNER, MACHINIST, HELPER, INTERNSHIPS !!"];
 
 function Index() {
   const [certificateOpen, setCertificateOpen] = useState(false);
@@ -77,25 +74,7 @@ function Index() {
 
   return (
     <>
-      <section className="border-b border-border bg-card/45 px-4 pb-3 pt-28 md:pt-32">
-        <div className="mx-auto max-w-7xl">
-          <div className="relative overflow-hidden">
-            <div className="flex w-max animate-marquee items-center gap-8">
-              {[...HOME_RUNNER_MESSAGES, ...HOME_RUNNER_MESSAGES].map((message, index) => (
-                <span
-                  key={`${message}-${index}`}
-                  className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground"
-                >
-                  <span className="mr-2 text-primary">//</span>
-                  {message}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Hero />
+      <Hero runnerMessages={HOME_RUNNER_MESSAGES} />
 
       <ClientMarquee />
 
@@ -146,16 +125,16 @@ function Index() {
         </div>
       </section>
 
-      <section className="px-4 py-20">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <section className="px-4 pb-12 pt-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.42fr_1fr]">
           <div className="order-2 border-l-2 border-primary/40 py-4 pl-6 lg:order-1 md:pl-8">
             <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
               Product profile / 02
             </span>
-            <p className="mt-5 max-w-md text-3xl font-black leading-tight text-foreground md:text-4xl">
+            <p className="mt-5 max-w-sm text-3xl font-black leading-tight text-foreground md:text-4xl">
               Industrial components made to perform under pressure.
             </p>
-            <div className="mt-8 grid max-w-md grid-cols-2 gap-3 text-xs uppercase tracking-[0.15em] text-muted-foreground">
+            <div className="mt-8 grid max-w-sm grid-cols-2 gap-3 text-xs uppercase tracking-[0.15em] text-muted-foreground">
               <span className="border-t border-border pt-3">Air + oil systems</span>
               <span className="border-t border-border pt-3">Flow control</span>
               <span className="border-t border-border pt-3">Thermal systems</span>
@@ -170,29 +149,26 @@ function Index() {
               Components for mission-critical applications.
             </h2>
             <p className="mt-5 leading-relaxed text-muted-foreground">
-              We manufacture air and oil cylinder inlets, inlet guide vanes and air preheater
-              components, alongside contract fabrication and machining for industrial customers.
+              Our product range covers critical systems and engineered components for power,
+              process, nuclear and industrial applications. Hover over a product to view it.
             </p>
-            <ul className="mt-7 space-y-3">
-              {[
-                "Air / oil cylinder inlets",
-                "Inlet guide vanes",
-                "Air preheater components",
-                "Contract fabrication and machining",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-center gap-3 text-sm font-medium text-foreground"
-                >
-                  <Check size={16} className="text-primary" /> {item}
-                </li>
-              ))}
-            </ul>
+            <MissionCriticalProducts
+              action={
+              <Link
+                to="/projects"
+                hash="photo-gallery"
+                className="gallery-cta inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-bold text-foreground"
+              >
+                <span className="logo-sheen" aria-hidden="true" />
+                <span>View Gallery</span> <ArrowRight size={16} />
+              </Link>
+              }
+            />
           </div>
         </div>
       </section>
 
-      <section className="px-4 py-20">
+      <section className="px-4 pb-20 pt-12">
         <div className="mx-auto grid max-w-7xl gap-8 border border-primary/30 bg-primary/5 p-8 md:grid-cols-[minmax(0,1fr)_220px] md:items-center md:p-12">
           <div className="min-w-0">
             <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">

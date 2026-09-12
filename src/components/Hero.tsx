@@ -4,10 +4,23 @@ import { ArrowDownRight, ArrowRight, Check } from "lucide-react";
 
 const PRINCIPLES = ["Optimum cost", "Quality", "In-time delivery"];
 
-export function Hero() {
+export function Hero({ runnerMessages }: { runnerMessages: string[] }) {
   return (
-    <section className="relative overflow-hidden px-4 pb-16 pt-8 md:pb-24 md:pt-10">
+    <section className="relative overflow-hidden px-4 pb-16 pt-28 md:pb-24 md:pt-32">
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[34rem] bg-gradient-to-b from-secondary/70 to-transparent" />
+      <div className="mx-auto mb-8 max-w-7xl overflow-hidden">
+        <div className="flex w-max animate-marquee items-center gap-8">
+          {[...runnerMessages, ...runnerMessages].map((message, index) => (
+            <span
+              key={`${message}-${index}`}
+              className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground"
+            >
+              <span className="mr-2 text-primary">//</span>
+              {message}
+            </span>
+          ))}
+        </div>
+      </div>
       <div className="mx-auto grid max-w-7xl items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
